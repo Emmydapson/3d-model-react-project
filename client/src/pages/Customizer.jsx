@@ -63,11 +63,15 @@ const Customizer = () => {
         })
       })
 
+      if (!response.ok) {
+        throw new Error('Network response was not ok.');
+      }
+
       const data = await response.json();
 
       handleDecals(type, `data:image/png;base64,${data.photo}`)
     } catch (error) {
-      alert(error)
+      alert('An error occurred while processing the request');
     } finally {
       setGeneratingImg(false);
       setActiveEditorTab("");
